@@ -1,6 +1,7 @@
 package com.bakalarka.StudentAttendanceApp.service;
 
 import com.bakalarka.StudentAttendanceApp.Exception.QuestionNotFoundException;
+import com.bakalarka.StudentAttendanceApp.model.Answer;
 import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.repo.QuestionRepo;
 import jakarta.transaction.Transactional;
@@ -15,18 +16,27 @@ public class QuestionService {
     private final QuestionRepo questionRepo;
 
     @Autowired
-    public QuestionService(QuestionRepo questionRepo) { this.questionRepo = questionRepo; }
+    public QuestionService(QuestionRepo questionRepo) {
+        this.questionRepo = questionRepo;
+    }
 
     public Question addQuestion(Question question) {
         return questionRepo.save(question);
     }
 
+
+
+
     public List<Question> findAllQuestions() {
         return questionRepo.findAll();
     }
 
+    public List<Answer> findAllAnswersForQuestion(Long id) {
+        return this.findQuestionById(id).getAnswers();
+    }
+
     public Question findQuestionById(Long id) {
-        return questionRepo.findQuestionById(id).orElseThrow(() -> new QuestionNotFoundException("Quesiton by id " + " was not found"));
+        return questionRepo.findQuestionById(id).orElseThrow(() -> new QuestionNotFoundException("Quesiton by id " + id + " was not found"));
     }
 
     @Transactional

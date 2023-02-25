@@ -1,8 +1,8 @@
 package com.bakalarka.StudentAttendanceApp.resource;
 
+import com.bakalarka.StudentAttendanceApp.model.Answer;
 import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.service.QuestionService;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +24,12 @@ public class QuestionResource {
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
+    @GetMapping("/find/{id}/answers")
+    public ResponseEntity<List<Answer>> getAllAnswersForQuestion(@PathVariable("id") Long id) {
+        List<Answer> answers = this.questionService.findAllAnswersForQuestion(id);
+        return new ResponseEntity<>(answers, HttpStatus.OK);
+    }
+
     @GetMapping("/find/{id}")
     public ResponseEntity<Question> getQuestion(@PathVariable("id") Long id) {
         return new ResponseEntity<>(this.questionService.findQuestionById(id), HttpStatus.OK);
@@ -34,7 +40,7 @@ public class QuestionResource {
         return new ResponseEntity<>(this.questionService.addQuestion(question), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update ")
+    @PutMapping("/update")
     public ResponseEntity<Question> updateQuestion(@RequestBody Question question){
         return new ResponseEntity<>(this.questionService.updateQuestion(question), HttpStatus.OK);
     }
