@@ -4,6 +4,7 @@ import com.bakalarka.StudentAttendanceApp.Exception.AnswerNotFoundException;
 import com.bakalarka.StudentAttendanceApp.model.Answer;
 import com.bakalarka.StudentAttendanceApp.repo.AnswerRepo;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class AnswerService {
 
     private final AnswerRepo answerRepo;
 
+    @Autowired
     public AnswerService(AnswerRepo answerRepo) {
         this.answerRepo = answerRepo;
     }

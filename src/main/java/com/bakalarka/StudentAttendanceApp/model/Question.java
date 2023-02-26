@@ -1,5 +1,6 @@
 package com.bakalarka.StudentAttendanceApp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,11 +26,11 @@ public class Question implements Serializable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
+
     @JsonManagedReference
     public List<Answer> getAnswers() {
         return answers;
     }
-
 
     //public Question(){}
 
