@@ -2,6 +2,7 @@ package com.bakalarka.StudentAttendanceApp.service;
 
 import com.bakalarka.StudentAttendanceApp.Exception.QuestionNotFoundException;
 import com.bakalarka.StudentAttendanceApp.model.Answer;
+import com.bakalarka.StudentAttendanceApp.model.AnswerOption;
 import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.repo.QuestionRepo;
 import jakarta.transaction.Transactional;
@@ -46,5 +47,10 @@ public class QuestionService {
 
     public Question updateQuestion(Question question) {
         return questionRepo.save(question);
+    }
+
+    public List<AnswerOption> getAnswerOptions(Long id) {
+        Question question = this.findQuestionById(id);
+        return question.getOptions();
     }
 }

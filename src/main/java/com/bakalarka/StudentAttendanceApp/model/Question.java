@@ -26,34 +26,16 @@ public class Question implements Serializable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Answer> answers;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AnswerOption> options;
+
+    private QuestionType questionType;
 
     @JsonManagedReference
     public List<Answer> getAnswers() {
-        return answers;
+        return this.answers;
     }
 
-    //public Question(){}
-
-    /*public Question(long id, String name, String questionBody){
-        this.id = id;
-        this.name = name;
-        this.questionBody = questionBody;
-    }*/
-
-/*    public long getId(){ return this.id; }
-    public String getName() { return this.name; }
-    public String getQuestionBody() { return this.questionBody; }
-
-    public void setId( long id) { this.id = id;}
-    public void setName(String name) { this.name = name; }
-    public void setQuestionBody(String questionBody) { this.questionBody = questionBody; }
-
-    @Override
-    public String toString(){
-        return "Question{" +
-                "id=" + this.id +
-                "name=" + this.name + "\'" +
-                "body=" + this.questionBody + "\'" +
-                "}";
-    }*/
+    @JsonManagedReference
+    public List<AnswerOption> getOptions() { return this.options; }
 }

@@ -42,4 +42,9 @@ public class SubjectService {
         subject.setQuestion(question);
         return this.subjectRepo.save(subject);
     }
+
+    public Question getQuestionOfSubject(Long id) {
+        Subject subject = this.findSubjectById(id);
+        return subject.getQuestion();
+    }
 }

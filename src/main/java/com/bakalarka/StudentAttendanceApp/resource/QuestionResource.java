@@ -2,6 +2,7 @@ package com.bakalarka.StudentAttendanceApp.resource;
 
 import com.bakalarka.StudentAttendanceApp.model.Answer;
 import com.bakalarka.StudentAttendanceApp.model.Question;
+import com.bakalarka.StudentAttendanceApp.model.QuestionType;
 import com.bakalarka.StudentAttendanceApp.service.QuestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,14 @@ public class QuestionResource {
     public ResponseEntity<Question> deleteQuestion(@PathVariable("id") Long id) {
         this.questionService.deleteQuestion(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/find/{id}/saveQuestionType")
+    public ResponseEntity<Question> saveQuestionType(@PathVariable("id") Long id, @RequestBody QuestionType questionType) {
+        Question question = this.questionService.findQuestionById(id);
+        question.setQuestionType(questionType);
+        this.questionService.updateQuestion(question);
+        return new ResponseEntity<>(question,HttpStatus.OK);
     }
 
 

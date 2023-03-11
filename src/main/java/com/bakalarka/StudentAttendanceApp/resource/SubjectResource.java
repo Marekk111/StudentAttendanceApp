@@ -48,4 +48,9 @@ public class SubjectResource {
     public ResponseEntity<Subject> setQuestion(@PathVariable("id") Long id, @RequestBody Question question) {
         return new ResponseEntity<>(this.subjectService.setQuestionForSubject(id, question), HttpStatus.OK);
     }
+
+    @GetMapping("find/{id}/question")
+    public ResponseEntity<Question> getQuestionOfSubject(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(this.subjectService.getQuestionOfSubject(id), HttpStatus.OK);
+    }
 }
