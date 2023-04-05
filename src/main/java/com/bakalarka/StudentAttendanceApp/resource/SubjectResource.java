@@ -44,7 +44,7 @@ public class SubjectResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/find/{id}/setQuestion")
+    /*@PutMapping("/find/{id}/setQuestion")
     public ResponseEntity<Subject> setQuestion(@PathVariable("id") Long id, @RequestBody Question question) {
         return new ResponseEntity<>(this.subjectService.setQuestionForSubject(id, question), HttpStatus.OK);
     }
@@ -52,5 +52,5 @@ public class SubjectResource {
     @GetMapping("find/{id}/question")
     public ResponseEntity<Question> getQuestionOfSubject(@PathVariable("id") Long id) {
         return new ResponseEntity<>(this.subjectService.getQuestionOfSubject(id), HttpStatus.OK);
-    }
+    }*/
 }

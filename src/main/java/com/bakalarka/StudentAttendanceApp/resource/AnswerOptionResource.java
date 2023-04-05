@@ -1,18 +1,12 @@
 package com.bakalarka.StudentAttendanceApp.resource;
 
-import com.bakalarka.StudentAttendanceApp.model.Answer;
 import com.bakalarka.StudentAttendanceApp.model.AnswerOption;
-import com.bakalarka.StudentAttendanceApp.repo.AnswerOptionRepo;
-import com.bakalarka.StudentAttendanceApp.repo.AnswerRepo;
 import com.bakalarka.StudentAttendanceApp.service.AnswerOptionService;
-import com.bakalarka.StudentAttendanceApp.service.AnswerService;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @Controller

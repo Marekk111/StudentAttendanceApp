@@ -1,8 +1,8 @@
 package com.bakalarka.StudentAttendanceApp.repo;
 
-import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.model.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.Optional;
 
 

@@ -1,8 +1,8 @@
 package com.bakalarka.StudentAttendanceApp.resource;
 
 import com.bakalarka.StudentAttendanceApp.model.Answer;
+import com.bakalarka.StudentAttendanceApp.model.AnswerOption;
 import com.bakalarka.StudentAttendanceApp.model.Question;
-import com.bakalarka.StudentAttendanceApp.model.QuestionType;
 import com.bakalarka.StudentAttendanceApp.service.QuestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,12 +52,10 @@ public class QuestionResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/find/{id}/saveQuestionType")
-    public ResponseEntity<Question> saveQuestionType(@PathVariable("id") Long id, @RequestBody QuestionType questionType) {
-        Question question = this.questionService.findQuestionById(id);
-        question.setQuestionType(questionType);
-        this.questionService.updateQuestion(question);
-        return new ResponseEntity<>(question,HttpStatus.OK);
+    @GetMapping("/find/{id}/options")
+    public ResponseEntity<List<AnswerOption>> getAllOptions(@PathVariable("id") Long id) {
+        List<AnswerOption> options = this.questionService.getAnswerOptions(id);
+        return new ResponseEntity<>(options, HttpStatus.OK);
     }
 
 

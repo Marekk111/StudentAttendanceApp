@@ -1,12 +1,13 @@
 package com.bakalarka.StudentAttendanceApp.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -19,7 +20,11 @@ public class Subject {
     private Long id;
     private String subjectName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "question_id", referencedColumnName = "id")
-    private Question question;
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<LessonEvent> lessons;
+
+    @JsonManagedReference
+    public List<LessonEvent> getLessons() {
+        return this.lessons;
+    }
 }

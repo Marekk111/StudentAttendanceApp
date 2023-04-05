@@ -37,7 +37,7 @@ public class SubjectService {
         this.subjectRepo.deleteSubjectById(id);
     }
 
-    public Subject setQuestionForSubject(Long id, Question question) {
+    /*public Subject setQuestionForSubject(Long id, Question question) {
         Subject subject = this.findSubjectById(id);
         subject.setQuestion(question);
         return this.subjectRepo.save(subject);
@@ -46,5 +46,5 @@ public class SubjectService {
     public Question getQuestionOfSubject(Long id) {
         Subject subject = this.findSubjectById(id);
         return subject.getQuestion();
-    }
+    }*/
 }

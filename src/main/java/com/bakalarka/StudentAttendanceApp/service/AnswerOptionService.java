@@ -1,9 +1,7 @@
 package com.bakalarka.StudentAttendanceApp.service;
 
 import com.bakalarka.StudentAttendanceApp.Exception.AnswerOptionNotFoundException;
-import com.bakalarka.StudentAttendanceApp.Exception.QuestionNotFoundException;
 import com.bakalarka.StudentAttendanceApp.model.AnswerOption;
-import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.repo.AnswerOptionRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +30,7 @@ public class AnswerOptionService {
     public AnswerOption addAnswerOption(AnswerOption option) {
         return this.answerOptionRepo.save(option);
     }
+
 
     @Transactional
     public void deleteAnswerOptionById(Long id) {
