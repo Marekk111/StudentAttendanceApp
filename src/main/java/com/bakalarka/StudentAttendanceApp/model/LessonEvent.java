@@ -2,6 +2,7 @@ package com.bakalarka.StudentAttendanceApp.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -23,32 +24,31 @@ public class LessonEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lessonGroup;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
     private Subject subject;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
     private Question question;
 
     @Column(name = "time_start", columnDefinition = "TIMESTAMP")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timeStart;
 
     @Column(name = "time_end", columnDefinition = "TIMESTAMP")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timeEnd;
     private String teacherUsername;
-
-
-    @JsonBackReference
-    public Question getQuestion() {
-        return this.question;
-    }
 
     @JsonBackReference
     public Subject getSubject() {
         return this.subject;
     }
+
+    /*@JsonBackReference
+    public Question getQuestion() {
+        return this.question;
+    }*/
 
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)

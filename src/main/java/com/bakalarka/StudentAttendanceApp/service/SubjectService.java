@@ -1,6 +1,7 @@
 package com.bakalarka.StudentAttendanceApp.service;
 
 import com.bakalarka.StudentAttendanceApp.Exception.SubjectNotFoundException;
+import com.bakalarka.StudentAttendanceApp.model.LessonEvent;
 import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.model.Subject;
 import com.bakalarka.StudentAttendanceApp.repo.SubjectRepo;
@@ -47,4 +48,9 @@ public class SubjectService {
         Subject subject = this.findSubjectById(id);
         return subject.getQuestion();
     }*/
+
+    public List<LessonEvent> getSubjectLessons(Long id) {
+        Subject subject = this.findSubjectById(id);
+        return subject.getLessons();
+    }
 }

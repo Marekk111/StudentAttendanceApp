@@ -1,8 +1,10 @@
 package com.bakalarka.StudentAttendanceApp.resource;
 
+import com.bakalarka.StudentAttendanceApp.model.LessonEvent;
 import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.model.Subject;
 import com.bakalarka.StudentAttendanceApp.service.SubjectService;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,4 +55,9 @@ public class SubjectResource {
     public ResponseEntity<Question> getQuestionOfSubject(@PathVariable("id") Long id) {
         return new ResponseEntity<>(this.subjectService.getQuestionOfSubject(id), HttpStatus.OK);
     }*/
+
+    @GetMapping("/find/{id}/lessons")
+    public ResponseEntity<List<LessonEvent>> getSubjectLessons(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(this.subjectService.getSubjectLessons(id), HttpStatus.OK);
+    }
 }

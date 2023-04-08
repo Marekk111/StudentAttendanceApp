@@ -39,7 +39,7 @@ public class LessonEventResource {
     }
 
     @PutMapping("/find/{id}/addQuestion")
-    public ResponseEntity<LessonEvent> addQuestionToLesson(@PathVariable("id") Long id, Question question) {
+    public ResponseEntity<LessonEvent> addQuestionToLesson(@PathVariable("id") Long id, @RequestBody Question question) {
         LessonEvent lesson = this.lessonEventService.addQuestionToLesson(id, question);
         return new ResponseEntity<>(lesson, HttpStatus.OK);
     }
