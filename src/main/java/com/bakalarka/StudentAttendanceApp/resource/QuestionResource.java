@@ -2,8 +2,11 @@ package com.bakalarka.StudentAttendanceApp.resource;
 
 import com.bakalarka.StudentAttendanceApp.model.Answer;
 import com.bakalarka.StudentAttendanceApp.model.AnswerOption;
+import com.bakalarka.StudentAttendanceApp.model.LessonEvent;
 import com.bakalarka.StudentAttendanceApp.model.Question;
+import com.bakalarka.StudentAttendanceApp.service.LessonEventService;
 import com.bakalarka.StudentAttendanceApp.service.QuestionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/question")
+@RequiredArgsConstructor
 public class QuestionResource {
     private final QuestionService questionService;
-
-    public QuestionResource(QuestionService questionService) {
-        this.questionService = questionService;
-    }
+    private final LessonEventService lessonEventService;
 
     @GetMapping("/all")
     public ResponseEntity<List<Question>> getAllQuestions() {

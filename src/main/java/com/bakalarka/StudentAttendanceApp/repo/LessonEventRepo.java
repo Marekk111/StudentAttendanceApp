@@ -1,6 +1,7 @@
 package com.bakalarka.StudentAttendanceApp.repo;
 
 import com.bakalarka.StudentAttendanceApp.model.LessonEvent;
+import com.bakalarka.StudentAttendanceApp.model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

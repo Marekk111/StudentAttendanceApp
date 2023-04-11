@@ -41,10 +41,15 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.cors();
         http.csrf().disable()
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/question/find/**").hasAnyAuthority("STUDENT", "TEACHER")
+                        .requestMatchers("/question/**").hasAuthority("TEACHER")
+                        .requestMatchers("/subject/find/**", "/subject/all").hasAnyAuthority("STUDENT", "TEACHER")
+                        .requestMatchers("/subject/**").hasAuthority("TEACHER")
+                        .anyRequest().authenticated()
                 )
                 .httpBasic();
         return http.build();
