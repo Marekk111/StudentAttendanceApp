@@ -2,7 +2,10 @@ package com.bakalarka.StudentAttendanceApp.service;
 
 import com.bakalarka.StudentAttendanceApp.Exception.AnswerNotFoundException;
 import com.bakalarka.StudentAttendanceApp.model.Answer;
+import com.bakalarka.StudentAttendanceApp.model.LessonEvent;
+import com.bakalarka.StudentAttendanceApp.model.Question;
 import com.bakalarka.StudentAttendanceApp.repo.AnswerRepo;
+import com.bakalarka.StudentAttendanceApp.repo.QuestionRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,10 @@ public class AnswerService {
 
     public Answer getAnswerById(Long id) {
         return this.answerRepo.findAnswerById(id).orElseThrow(() -> new AnswerNotFoundException("Answer by id " + id + " was not found"));
+    }
+
+    public List<Answer> getAnswersByQuestionAndGroup(Question question, Long lessonId) {
+        return this.answerRepo.findAnswersByQuestionAndLessonId(question, lessonId);
     }
 
     @Transactional

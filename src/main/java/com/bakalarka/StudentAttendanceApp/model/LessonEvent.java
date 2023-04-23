@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.*;
 
 @Entity
 @Data
@@ -24,6 +25,7 @@ public class LessonEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lessonGroup;
+    private String groupName;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
     private Subject subject;
@@ -45,11 +47,6 @@ public class LessonEvent {
         return this.subject;
     }
 
-    /*@JsonBackReference
-    public Question getQuestion() {
-        return this.question;
-    }*/
-
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     public LocalDateTime getTimeStart() {
@@ -60,5 +57,13 @@ public class LessonEvent {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     public LocalDateTime getTimeEnd() {
         return this.timeEnd;
+    }
+
+    /*public boolean addQuestionToPreviousQuestions(Question question) {
+        return this.previousQuestions.add(question);
+    }*/
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }
