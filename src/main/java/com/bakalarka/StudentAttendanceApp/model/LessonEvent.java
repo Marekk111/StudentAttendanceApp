@@ -25,7 +25,6 @@ public class LessonEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lessonGroup;
-    private String groupName;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
     private Subject subject;
